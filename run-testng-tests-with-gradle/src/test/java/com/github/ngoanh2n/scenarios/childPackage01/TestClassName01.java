@@ -1,6 +1,6 @@
 package com.github.ngoanh2n.scenarios.childPackage01;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 /**
  * @author ngoanh2n@gmail.com (Ho Huu Ngoan)
