@@ -1,1 +1,1 @@
-## Demonstrations for blog https://ngoanh2n.github.io/blog/
+# Demonstrations for ngoanh2n's blog
