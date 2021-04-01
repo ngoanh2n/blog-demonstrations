@@ -1,0 +1,47 @@
+import java.nio.charset.StandardCharsets
+
+/**
+ * @author ngoanh2n@gmail.com (Ho Huu Ngoan)
+ */
+group group
+version version
+
+apply plugin: 'java'
+apply plugin: 'idea'    // Optional using for IntelliJ IDEA
+apply plugin: 'eclipse' // Optional using for Eclipse
+
+/*
+* Define extra properties for the project object - project.ext
+*/
+ext {
+    encoding = StandardCharsets.UTF_8.name()
+}
+
+[compileJava, compileTestJava]*.sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+[compileJava, compileTestJava]*.options.collect { options -> options.encoding = encoding }
+
+repositories {
+    flatDir { dirs 'libs' }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs/libs-implementation', include: ['*.jar'])
+    testImplementation fileTree(dir: 'libs/libs-test-implementation', include: ['*.jar'])
+
+    compileOnly files('libs/libs-annotation-processor/lombok-1.18.12.jar')
+    annotationProcessor files('libs/libs-annotation-processor/lombok-1.18.12.jar')
+
+    testCompileOnly files('libs/libs-annotation-processor/lombok-1.18.12.jar')
+    testAnnotationProcessor files('libs/libs-annotation-processor/lombok-1.18.12.jar')
+}
+
+buildscript {
+    repositories {
+        flatDir { dirs 'libs' }
+    }
+    dependencies {
+        classpath files('libs/libs-implementation/allure-gradle:2.8.1.jar')
+    }
+}
